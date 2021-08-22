@@ -1,11 +1,12 @@
 {
     "scale": {
-        "customers": 30,
+        "customers": 10,
         "airlines": 10,
         "countries": 243,
-        "users":10,
-        "flights_per_airline": 3,
-        "tickets_per_customer": 1
+        "users":20,
+        "flights":50,
+        "tickets_per_airline":450
+       
     },
     "db": {
         "user": "postgres",
@@ -15,7 +16,7 @@
         "port": 5432
     },
 
-    "user":{
+    "admin":{
         "name":"eli"
     }
 }
