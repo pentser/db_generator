@@ -9,6 +9,9 @@ const pool = new Pool({
 
 const chalk = require('chalk');
 
+// custom module to generate departure and landing time
+const generator=require('./date');
+
 
 
 const fs= require('fs');
@@ -158,10 +161,10 @@ async function InsertDataToTables() {
    /*  flight table*/ 
    //"https://randomuser.me/api/?results=10&seed=abc" - username
   /////////////////////////////////////////////////////////////
-  response = await axios({
+ /*  response = await axios({
     url: `https://randomuser.me/api/?results=${num_of_flights}&seed=abc`,
     method: "get",
-  });
+  }); */
 
   
   let departure_time;
@@ -171,10 +174,13 @@ async function InsertDataToTables() {
   let destination_country_id;
   let remaining_tickets=num_of_tickets_per_airline;
 
+
+
   for(i=0;i< num_of_flights;i++){
 
-    departure_time=response.data.results[i].dob.date;
-    landing_time=response.data.results[i].registered.date;
+    let res=generator();
+    departure_time=res.departure_time;
+    landing_time=res.landing_time;
     airline_id= Math.floor(Math.random() * num_of_airlines) + 1;
     origin_country_id= Math.floor(Math.random() * num_of_countries) + 1;
     destination_country_id=Math.floor(Math.random() * num_of_countries) + 1;

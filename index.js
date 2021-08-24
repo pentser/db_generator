@@ -1,5 +1,1 @@
- require('./delete');
-
-
-
-
+require("./delete");
