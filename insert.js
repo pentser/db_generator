@@ -165,7 +165,7 @@ async function InsertDataToTables() {
   let airline_id;
   let origin_country_id;
   let destination_country_id;
-  let remaining_tickets=num_of_tickets_per_airline;
+  let remaining_tickets;
   
 
 
@@ -178,6 +178,7 @@ async function InsertDataToTables() {
     origin_country_id= Math.floor(Math.random() * num_of_countries) + 1;
     destination_country_id=Math.floor(Math.random() * num_of_countries) + 1;
     //remaining_tickets-=1;
+    remaining_tickets=num_of_tickets_per_airline;
 
 
    const text = "SELECT * FROM sp_insert_flight($1,$2,$3,$4,$5,$6)"
