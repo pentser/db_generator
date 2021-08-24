@@ -42,7 +42,7 @@ async function InsertDataToTables() {
 		let text1 = "SELECT * FROM sp_insert_country($1)"
 	    let value1 = [data[i].name];
         console.log(chalk.green(`insert country [${i+1}] ${data[i].name} to countries table.......... `));
-	    pool.query(text1,value1);
+	    await pool.query(text1,value1);
 
 	}
 
@@ -67,7 +67,7 @@ async function InsertDataToTables() {
    
        const value2 = [username,password,email];
        console.log(chalk.yellow(`insert user [${i+1}] ${username} to users table.......... `));
-       pool.query(text2,value2);
+       await pool.query(text2,value2);
   }
 
   
@@ -119,7 +119,7 @@ async function InsertDataToTables() {
    const text3 = "SELECT * FROM sp_insert_customer($1,$2,$3,$4,$5,$6)"
      const value3 = [firstName,lastName,address,phoneNumber,userId,credit_card_no];
      console.log(chalk.blue(`insert customer [${i+1}] ${firstName}  ${lastName}  to customer table.......... `));
-     pool.query(text3,value3);
+     await pool.query(text3,value3);
   }
 
   
@@ -147,7 +147,7 @@ async function InsertDataToTables() {
      const text4 = "SELECT * FROM sp_insert_airline($1,$2,$3)"
      const value4 = [airlineName,countryId,userId1];
      console.log(chalk.blueBright(`insert airline [${i+1}] ${airlineName} to airline table.......... `));
-     pool.query(text4,value4);
+     await pool.query(text4,value4);
   }
 
   /////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ async function InsertDataToTables() {
    const text = "SELECT * FROM sp_insert_flight($1,$2,$3,$4,$5,$6)"
      const value = [airline_id,origin_country_id,destination_country_id,departure_time,landing_time,remaining_tickets];
      console.log(chalk.yellowBright(`insert flight: [${i+1}] at [${departure_time}] to flight table.......... `));
-     pool.query(text,value);
+     await pool.query(text,value);
   }
 
   
@@ -195,7 +195,7 @@ async function InsertDataToTables() {
    const text = "SELECT * FROM sp_insert_ticket($1,$2)"
      const value = [flight_id,i+1];
      console.log(chalk.greenBright(`insert ticket [${i+1}]  tickets table.......... `));
-      pool.query(text,value);
+      await pool.query(text,value);
   }
 
   await client.query('COMMIT')

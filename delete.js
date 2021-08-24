@@ -21,27 +21,27 @@ async function deleteAllTables() {
       await client.query('BEGIN')
 
       let text1 = "call sp_delete_and_reset_tickets()";
-      pool.query(text1);
+      await pool.query(text1);
       console.log(chalk.blue('delete and reset tickets table......'));
 
       let text2 = "call sp_delete_and_reset_flights()";
-      pool.query(text2);
+      await pool.query(text2);
       console.log(chalk.blue('delete and reset flights table......'));
 
       let text3 = "call sp_delete_and_reset_airlines()";
-      pool.query(text3);
+      await pool.query(text3);
       console.log(chalk.blue('delete and reset airlines table......'));
 
       let text4 = "call sp_delete_and_reset_customers()";
-      pool.query(text4);
+      await pool.query(text4);
       console.log(chalk.blue('delete and reset customers table......'));
 
       let text5 = "call sp_delete_and_reset_users()";
-      pool.query(text5);
+      await pool.query(text5);
       console.log(chalk.blue('delete and reset users table......'));
 
       let text6 = "call sp_delete_and_reset_countries()";
-      pool.query(text6);
+      await pool.query(text6);
       console.log(chalk.blue('delete and reset countries table......'));
 
 
