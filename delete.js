@@ -50,7 +50,8 @@ async function deleteAllTables() {
      await client.query('ROLLBACK')
      throw e
    } finally {
-     client.release()
+     client.release();
+     require("./insert");
    }
   
   }

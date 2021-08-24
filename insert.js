@@ -207,7 +207,9 @@ async function InsertDataToTables() {
      await client.query('ROLLBACK')
      throw e
    } finally {
-     client.release()
+     client.release();
+    
+    
    }
   
   }

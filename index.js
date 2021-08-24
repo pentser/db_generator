@@ -1,5 +1,5 @@
-/* require('./delete');
-require('./insert'); */
+ require('./delete');
+
 
 
 
