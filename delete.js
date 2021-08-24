@@ -51,7 +51,7 @@ async function deleteAllTables() {
      throw e
    } finally {
      client.release();
-     require("./insert");
+    // require("./insert");
    }
   
   }

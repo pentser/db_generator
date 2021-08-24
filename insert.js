@@ -12,8 +12,6 @@ const chalk = require('chalk');
 // custom module to generate departure and landing time
 const generator=require('./date');
 
-
-
 const fs= require('fs');
 // get countries data from countries files
 let string_from_file = fs.readFileSync('data\\countries.json', {encoding:'utf8', flag:'r'});
@@ -31,11 +29,6 @@ const num_of_tickets_per_airline=scale.tickets_per_airline;
 const  num_of_countries=scale.countries;
 
 const axios = require('axios');
-
-
-
-
-
 
 async function InsertDataToTables() {
 
@@ -173,7 +166,7 @@ async function InsertDataToTables() {
   let origin_country_id;
   let destination_country_id;
   let remaining_tickets=num_of_tickets_per_airline;
-
+  
 
 
   for(i=0;i< num_of_flights;i++){
@@ -202,23 +195,20 @@ async function InsertDataToTables() {
      const value = [flight_id,i+1];
      console.log(chalk.greenBright(`insert ticket [${i+1}]  tickets table.......... `));
       pool.query(text,value);
-  
   }
 
+  await client.query('COMMIT')
 
-
-
-     await client.query('COMMIT')
-   } catch (e) {
-     await client.query('ROLLBACK')
-     throw e
-   } finally {
-     client.release();
-    
-    
-   }
+} catch (e) {
+  await client.query('ROLLBACK')
+  throw e
+} finally {
+  client.release();
   
-  }
+}
+
+}
+
 
 
   InsertDataToTables().catch(e => console.error(e.stack));
