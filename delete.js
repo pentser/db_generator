@@ -52,7 +52,7 @@ async function deleteAllTables() {
    } finally {
      client.release();
      
-    // require("./insert");
+     require("./insert");
    }
   
   }

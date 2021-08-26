@@ -22,6 +22,14 @@ return {
 module.exports=generateDeartureAndLandingTime;
 
 
+/*let now = new Date(); // Fri Feb 20 2015 19:29:31 GMT+0530 (India Standard Time) 
+let UTCDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toUTCString();
+//OUTPUT 2021-08-25 20:23:00.000000*/
+
+
+
+
+
 
 
 

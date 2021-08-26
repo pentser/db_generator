@@ -12,6 +12,9 @@ const chalk = require('chalk');
 // custom module to generate departure and landing time
 const generator=require('./date');
 
+// global arr of current remaning tickets for each flight;
+const flight_tickets_ar=require("./remaning_tickets");
+
 const fs= require('fs');
 // get countries data from countries files
 let string_from_file = fs.readFileSync('data\\countries.json', {encoding:'utf8', flag:'r'});
