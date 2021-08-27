@@ -12,9 +12,6 @@ const chalk = require('chalk');
 // custom module to generate departure and landing time
 const generator=require('./date');
 
-// global arr of current remaning tickets for each flight;
-const flight_tickets_ar=require("./remaning_tickets");
-
 const fs= require('fs');
 // get countries data from countries files
 let string_from_file = fs.readFileSync('data\\countries.json', {encoding:'utf8', flag:'r'});
@@ -28,7 +25,7 @@ const num_of_users=scale.users;
 const num_of_airlines=scale.airlines;
 const num_of_customers=scale.customers;
 const num_of_flights=scale.flights;
-const num_of_tickets_per_airline=scale.tickets_per_airline;
+const num_of_tickets_per_flight=scale.tickets_per_flight;
 const  num_of_countries=scale.countries;
 
 const axios = require('axios');
@@ -181,7 +178,9 @@ async function InsertDataToTables() {
     origin_country_id= Math.floor(Math.random() * num_of_countries) + 1;
     destination_country_id=Math.floor(Math.random() * num_of_countries) + 1;
     //remaining_tickets-=1;
-    remaining_tickets=num_of_tickets_per_airline;
+
+   
+    remaining_tickets=num_of_tickets_per_flight;
 
 
    const text = "SELECT * FROM sp_insert_flight($1,$2,$3,$4,$5,$6)"
@@ -198,7 +197,8 @@ async function InsertDataToTables() {
    const text = "SELECT * FROM sp_insert_ticket($1,$2)"
      const value = [flight_id,i+1];
      console.log(chalk.greenBright(`insert ticket [${i+1}]  tickets table.......... `));
-      await pool.query(text,value);
+     await pool.query(text,value);
+
   }
 
   await client.query('COMMIT')
@@ -212,8 +212,6 @@ async function InsertDataToTables() {
 }
 
 }
-
-
 
   InsertDataToTables().catch(e => console.error(e.stack));
 

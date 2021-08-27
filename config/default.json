@@ -5,7 +5,7 @@
         "countries": 243,
         "users":20,
         "flights":50,
-        "tickets_per_airline":450
+        "tickets_per_flight":450
        
     },
     "db": {
