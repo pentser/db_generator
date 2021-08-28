@@ -9,8 +9,14 @@ const pool = new Pool({
 
 const chalk = require('chalk');
 
+
+
 // custom module to generate departure and landing time
 const generator=require('./date');
+
+
+const updateTickets=require('./secound_way_async_with_knex/main');
+
 
 const fs= require('fs');
 // get countries data from countries files
@@ -88,23 +94,6 @@ async function InsertDataToTables() {
   let userId=10;
   let credit_card_no;
   
-
- /*  for(i=0;i< num_of_customers;i++,userId++){
-
-    firstName=response.data.results[i].name.first;
-    lastName=response.data.results[i].name.last;
-    address= response.data.results[i].location.street.name + ','+ response.data.results[i].location.city
-    + ','+ response.data.results[i].location.country;
-    phoneNumber=response.data.results[i].phone;
-    credit_card_no=response.data.results[i].login.md5;
-
-
-
-   const text3 = "SELECT * FROM sp_insert_customer($1,$2,$3,$4,$5,$6)"
-     const value3 = [firstName,lastName,address,phoneNumber,userId,credit_card_no];
-     console.log(chalk.blue(`insert customer [${i+1}] ${firstName}  ${lastName}  to customer table.......... `));
-     pool.query(text3,value3);
-  } */
 
   for(i=0;i< num_of_customers;i++,userId++){
 
@@ -198,6 +187,7 @@ async function InsertDataToTables() {
      const value = [flight_id,i+1];
      console.log(chalk.greenBright(`insert ticket [${i+1}]  tickets table.......... `));
      await pool.query(text,value);
+     updateTickets(flight_id);
 
   }
 
